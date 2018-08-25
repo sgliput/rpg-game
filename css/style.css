@@ -1,0 +1,68 @@
+$(document).click(function () {
+
+    if ($("#player").is(":parent") && $("#opponent").is(":parent")) {
+        $(".thumb").off("click");
+        var baseAttack = $("#player .attack").attr("value");
+        var selfAttack = $("#player .attack").text();
+        var oppAttack = $("#opponent .attack").text();
+        var selfHP = $("#player .HP").text();
+        var oppHP = $("#opponent .HP").text();
+        var selfCounter = $("#player .counterAttack").text();
+        var oppCounter = $("#opponent .counterAttack").text();
+
+        var fight = function () {
+                console.log(selfAttack);
+                console.log(oppAttack);
+                selfHP = parseInt(selfHP) - parseInt(oppCounter);
+                $("#player .HP").text(selfHP);
+                oppHP = parseInt(oppHP) - parseInt(selfAttack);
+                $("#opponent .HP").text(oppHP);
+
+                $("#message").html("<p>Your character dealt " + selfAttack + " damage points.</p><p>Your opponent dealt " + oppCounter + " damage points.</p>");
+                selfAttack = parseInt(selfAttack) + parseInt(baseAttack);
+                $("#player .attack").text(selfAttack);
+                console.log(selfAttack);
+            };
+
+        $("#attackbtn").on("click", function () {
+            
+            fight();
+
+            if (selfHP <= 0) {
+                $("#message").html("<p>You lost!</p>");
+                $("#player").empty();
+                $("#attackbtn").prop('disabled', true);
+            } else if (oppHP <= 0) {
+                $("#message").html("<p>You defeated " + $("#opponent .img-responsive").attr("alt") + "!</p>");
+                $("#opponent").empty();
+                $("#attackbtn").prop('disabled', true);
+                activateOpponent();
+            }
+        });
+        $("#attackbtn").prop('disabled', true);
+        $("#attackbtn").on("click", function (){
+            fight();
+
+
+        })
+
+        
+
+        
+
+
+
+
+
+
+
+
+
+    };
+});
+
+
+
+});
+
+

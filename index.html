@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RPG</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row gallery">
+            <div id="ironman" class="col-lg-3 col-md-3 col-sm-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img id="Iron Man" class="img-responsive" src="assets/images/ironman.png" alt="Iron Man" width="200px" height="200px">
+                </a>
+                <br>
+                <span>Attack Points:
+                    <span class="attack" value="10">10</span>
+                </span>
+                <br>
+                <span>Health Points:
+                    <span class="HP" value="120">120</span>
+                </span>
+                <br>
+                <span>Counter-attack Points:
+                    <span class="counterAttack">8</span>
+                </span>
+            </div>
+            <div id="cap" class="col-lg-3 col-md-3 col-sm-6 thumb">
+                <a id="capimg" class="thumbnail" href="#">
+                    <img class="img-responsive" src="assets/images/captainamerica.png" alt="Captain America" width="200px" height="200px">
+                </a>
+                <br>
+                <span>Attack Points:
+                    <span class="attack" value="8">8</span>
+                </span>
+                <br>
+                <span>Health Points:
+                    <span class="HP" value="100">100</span>
+                </span>
+                <br>
+                <span>Counter-attack Points:
+                    <span class="counterAttack">5</span>
+                </span>
+            </div>
+            <div id="thor" class="col-lg-3 col-md-3 col-sm-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img id="thorimg" class="img-responsive" src="assets/images/thor.png" alt="Thor" width="200px" height="200px">
+                </a>
+                <br>
+                <span>Attack Points:
+                    <span class="attack" value="14">14</span>
+                </span>
+                <br>
+                <span>Health Points:
+                    <span class="HP" value="180">180</span>
+                </span>
+                <br>
+                <span>Counter-attack Points:
+                    <span class="counterAttack">25</span>
+                </span>
+            </div>
+            <div id="hulk" class="col-lg-3 col-md-3 col-sm-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img id="hulkimg" class="img-responsive" src="assets/images/hulk.png" alt="Hulk" width="200px" height="200px">
+                </a>
+                <br>
+                <span>Attack Points:
+                    <span class="attack" value="12">12</span>
+                </span>
+                <br>
+                <span>Health Points:
+                    <span class="HP" value="150">150</span>
+                </span>
+                <br>
+                <span>Counter-attack Points:
+                    <span class="counterAttack">20</span>
+                </span>
+
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div id="playerArea" class="characterArea col-sm-5 text-center">
+                <p>Your character:</p>
+                <div id="player">
+                    <!-- Player image goes here -->
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <br>
+                        <br>
+                        <div class="text-center">
+                            <button id="attackbtn" class="btn btn-danger">Attack</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <button id="resetbtn" class="btn btn-primary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="message" class="text-center">
+                            <!-- Post-attack message goes here.-->
+                            <p>Choose your character!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="opponentArea" class="characterArea col-sm-5 text-center">
+                <p>Your opponent:</p>
+                <div id="opponent">
+                    <!-- Opponent image goes here -->
+                </div>
+            </div>
+            <br>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+
+    $(document).ready(function () {
+
+        var activatePlayer = function () {
+            $("#ironman").one("click", function () {
+                $("#ironman").detach().appendTo('#player');
+                $("#ironman").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+            });
+            $("#cap").one("click", function () {
+                $("#cap").detach().appendTo('#player');
+                $("#cap").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+            });
+            $("#thor").one("click", function () {
+                $("#thor").detach().appendTo('#player');
+                $("#thor").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+            });
+            $("#hulk").one("click", function () {
+                $("#hulk").detach().appendTo('#player');
+                $("#hulk").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+            });
+        };
+        activatePlayer();
+
+        var activateOpponent = function () {
+            $(document).click(function () {
+
+
+                if ($("#player").is(":parent")) {
+                    $(".thumb").off("click");
+
+                    $("#ironman").one("click", function () {
+                        $("#ironman").detach().appendTo('#opponent');
+                        $("#ironman").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                        $("#attackbtn").prop("disabled", false);
+                    });
+                    $("#cap").one("click", function () {
+                        $("#cap").detach().appendTo('#opponent');
+                        $("#cap").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                        $("#attackbtn").prop("disabled", false);
+                    });
+                    $("#thor").one("click", function () {
+                        $("#thor").detach().appendTo('#opponent');
+                        $("#thor").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                        $("#attackbtn").prop("disabled", false);
+                    });
+                    $("#hulk").one("click", function () {
+                        $("#hulk").detach().appendTo('#opponent');
+                        $("#hulk").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                        $("#attackbtn").prop("disabled", false);
+                    });
+                }
+            });
+        };
+
+        if ($("#player").is(":parent")) {
+            activateOpponent();
+        };
+
+
+
+
+        $("#attackbtn").on("click", function () {
+            if ($("#player").is(":parent") && $("#opponent").is(":parent")) {
+                
+                $(".thumb").off("click");
+                var baseAttack = $("#player .attack").attr("value");
+                var selfAttack = $("#player .attack").text();
+                var oppAttack = $("#opponent .attack").text();
+                var selfHP = $("#player .HP").text();
+                var oppHP = $("#opponent .HP").text();
+                var selfCounter = $("#player .counterAttack").text();
+                var oppCounter = $("#opponent .counterAttack").text();
+
+
+
+                console.log(selfAttack);
+                console.log(oppAttack);
+                selfHP = parseInt(selfHP) - parseInt(oppCounter);
+                $("#player .HP").text(selfHP);
+                oppHP = parseInt(oppHP) - parseInt(selfAttack);
+                $("#opponent .HP").text(oppHP);
+
+                $("#message").html("<p>Your character dealt " + selfAttack + " damage points.</p><p>Your opponent dealt " + oppCounter + " damage points.</p>");
+                selfAttack = parseInt(selfAttack) + parseInt(baseAttack);
+                $("#player .attack").text(selfAttack);
+                console.log(selfAttack);
+
+                if (selfHP <= 0) {
+                    $("#message").html("<p>You lost!</p>");
+                    $("#player .thumb").detach().appendTo(".gallery").hide();
+                    $("#attackbtn").prop('disabled', true);
+                } else if (oppHP <= 0) {
+                    $("#message").html("<p>You defeated " + $("#opponent img").attr("alt") + "!</p>");
+                    $("#opponent .thumb").detach().appendTo(".gallery").hide();
+                    $("#attackbtn").prop("disabled", true);
+                    activateOpponent();
+                } else if (oppHP <= 0 && $('.gallery .thumb').css("display", "none")) {
+                    $("#message").text("Congratulations! You defeated all enemies!");
+                }
+
+              
+
+            };
+        });
+
+        $("#resetbtn").on("click", function () {
+            $(".thumb").off("click");
+            var resetAttack = $("#player .attack").attr("value");
+            $("#player .attack").text(resetAttack);
+
+            var resetIronHP = $("#ironman .HP").attr("value");
+            $("#ironman .HP").text(resetIronHP);
+            var resetCapHP = $("#cap .HP").attr("value");
+            $("#cap .HP").text(resetCapHP);
+            var resetThorHP = $("#thor .HP").attr("value");
+            $("#thor .HP").text(resetThorHP);
+            var resetHulkHP = $("#hulk .HP").attr("value");
+            $("#hulk .HP").text(resetHulkHP);
+
+
+            $("#message").text("Choose your character!");
+            $(".gallery").append($("#ironman").show().attr("class", "col-lg-3 col-md-3 col-sm-6"));
+            $(".gallery").append($("#cap").show().attr("class", "col-lg-3 col-md-3 col-sm-6"));
+            $(".gallery").append($("#thor").show().attr("class", "col-lg-3 col-md-3 col-sm-6"));
+            $(".gallery").append($("#hulk").show().attr("class", "col-lg-3 col-md-3 col-sm-6"));
+
+            activatePlayer();
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+</script>
