@@ -148,64 +148,70 @@
 </html>
 
 <script>
-
+    var firstEmpty = true;
 
     $(document).ready(function () {
 
-        var activatePlayer = function () {
+        var activate = function () {
 
-            $("#ironman").one("click", function () {
-                $("#ironman").detach().appendTo('#player');
-                $("#ironman").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
-            });
-            $("#cap").one("click", function () {
-                $("#cap").detach().appendTo('#player');
-                $("#cap").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
-            });
-            $("#thor").one("click", function () {
-                $("#thor").detach().appendTo('#player');
-                $("#thor").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
-            });
-            $("#hulk").one("click", function () {
-                $("#hulk").detach().appendTo('#player');
-                $("#hulk").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
-            });
+            if (firstEmpty) { //which is true
+
+                $("#ironman").one("click", function () {
+                    $("#ironman").detach().appendTo('#player');
+                    $("#ironman").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                    firstEmpty = false;
+                });
+                $("#cap").one("click", function () {
+                    $("#cap").detach().appendTo('#player');
+                    $("#cap").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                    firstEmpty = false;
+                    console.log(firstEmpty); // returns false
+                });
+                $("#thor").one("click", function () {
+                    $("#thor").detach().appendTo('#player');
+                    $("#thor").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                    firstEmpty = false;
+                    console.log(firstEmpty); // returns false
+                });
+                $("#hulk").one("click", function () {
+                    $("#hulk").detach().appendTo('#player');
+                    $("#hulk").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                    firstEmpty = false;
+                });
+
+
+            } else {
+                $(".gallery #ironman").one("click", function () {
+                    $("#ironman").detach().appendTo('#opponent');
+                    $("#ironman").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                    $("#attackbtn").prop("disabled", false);
+                });
+                $(".gallery #cap").one("click", function () {
+                    $("#cap").detach().appendTo('#opponent');
+                    $("#cap").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                    $("#attackbtn").prop("disabled", false);
+                });
+                $(".gallery #thor").one("click", function () {
+                    $("#thor").detach().appendTo('#opponent');
+                    $("#thor").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                    $("#attackbtn").prop("disabled", false);
+                });
+                $(".gallery #hulk").one("click", function () {
+                    $("#hulk").detach().appendTo('#opponent');
+                    $("#hulk").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
+                    $("#attackbtn").prop("disabled", false);
+                });
+
+            }
         };
 
 
-        var activateOpponent = function () {
-            $(document).click(function () {
 
 
-                if ($("#player").has("div")) {
 
 
-                    $(".gallery #ironman").one("click", function () {
-                        $("#ironman").detach().appendTo('#opponent');
-                        $("#ironman").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
-                        $("#attackbtn").prop("disabled", false);
-                    });
-                    $(".gallery #cap").one("click", function () {
-                        $("#cap").detach().appendTo('#opponent');
-                        $("#cap").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
-                        $("#attackbtn").prop("disabled", false);
-                    });
-                    $(".gallery #thor").one("click", function () {
-                        $("#thor").detach().appendTo('#opponent');
-                        $("#thor").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
-                        $("#attackbtn").prop("disabled", false);
-                    });
-                    $(".gallery #hulk").one("click", function () {
-                        $("#hulk").detach().appendTo('#opponent');
-                        $("#hulk").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
-                        $("#attackbtn").prop("disabled", false);
-                    });
-                }
-            });
-        };
+        activate();
 
-        activatePlayer();
-        activateOpponent();
 
 
 
@@ -278,20 +284,22 @@
 
             $("#player").empty();
             $("#opponent").empty();
-            activatePlayer();
+            firstEmpty = true;
+            activate();
         });
-
-
-
-
-
-
-
-
-
-
-
-
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
