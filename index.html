@@ -153,6 +153,7 @@
     $(document).ready(function () {
 
         var activatePlayer = function () {
+
             $("#ironman").one("click", function () {
                 $("#ironman").detach().appendTo('#player');
                 $("#ironman").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
@@ -170,31 +171,31 @@
                 $("#hulk").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
             });
         };
-        activatePlayer();
+
 
         var activateOpponent = function () {
             $(document).click(function () {
 
 
-                if ($("#player").is(":parent")) {
-                    $(".thumb").off("click");
+                if ($("#player").has("div")) {
 
-                    $("#ironman").one("click", function () {
+
+                    $(".gallery #ironman").one("click", function () {
                         $("#ironman").detach().appendTo('#opponent');
                         $("#ironman").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
                         $("#attackbtn").prop("disabled", false);
                     });
-                    $("#cap").one("click", function () {
+                    $(".gallery #cap").one("click", function () {
                         $("#cap").detach().appendTo('#opponent');
                         $("#cap").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
                         $("#attackbtn").prop("disabled", false);
                     });
-                    $("#thor").one("click", function () {
+                    $(".gallery #thor").one("click", function () {
                         $("#thor").detach().appendTo('#opponent');
                         $("#thor").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
                         $("#attackbtn").prop("disabled", false);
                     });
-                    $("#hulk").one("click", function () {
+                    $(".gallery #hulk").one("click", function () {
                         $("#hulk").detach().appendTo('#opponent');
                         $("#hulk").removeClass("col-lg-3 col-md-3 col-sm-6").addClass("col-sm-12");
                         $("#attackbtn").prop("disabled", false);
@@ -203,16 +204,16 @@
             });
         };
 
-        if ($("#player").is(":parent")) {
-            activateOpponent();
-        };
+        activatePlayer();
+        activateOpponent();
+
 
 
 
 
         $("#attackbtn").on("click", function () {
             if ($("#player").is(":parent") && $("#opponent").is(":parent")) {
-                
+
                 $(".thumb").off("click");
                 var baseAttack = $("#player .attack").attr("value");
                 var selfAttack = $("#player .attack").text();
@@ -249,7 +250,7 @@
                     $("#message").text("Congratulations! You defeated all enemies!");
                 }
 
-              
+
 
             };
         });
@@ -270,11 +271,13 @@
 
 
             $("#message").text("Choose your character!");
-            $(".gallery").append($("#ironman").show().attr("class", "col-lg-3 col-md-3 col-sm-6"));
-            $(".gallery").append($("#cap").show().attr("class", "col-lg-3 col-md-3 col-sm-6"));
-            $(".gallery").append($("#thor").show().attr("class", "col-lg-3 col-md-3 col-sm-6"));
-            $(".gallery").append($("#hulk").show().attr("class", "col-lg-3 col-md-3 col-sm-6"));
+            $(".gallery").append($("#ironman").show().attr("class", "col-lg-3 col-md-3 col-sm-6 thumb"));
+            $(".gallery").append($("#cap").show().attr("class", "col-lg-3 col-md-3 col-sm-6 thumb"));
+            $(".gallery").append($("#thor").show().attr("class", "col-lg-3 col-md-3 col-sm-6 thumb"));
+            $(".gallery").append($("#hulk").show().attr("class", "col-lg-3 col-md-3 col-sm-6 thumb"));
 
+            $("#player").empty();
+            $("#opponent").empty();
             activatePlayer();
         });
 
@@ -290,4 +293,5 @@
 
 
     });
+
 </script>
