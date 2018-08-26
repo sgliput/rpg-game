@@ -96,6 +96,7 @@ $(document).ready(function () {
                 $("#playerArea p").hide();
                 $("#opponent .thumb").detach().appendTo(".gallery").hide();
                 $("#player .thumb").detach().appendTo(".gallery").hide();
+                $("#attackbtn").prop("disabled", true);
             } else if (selfHP <= 0) {
                 $("#message").html("<p>You lost!</p>");
                 $("#player .thumb").detach().appendTo(".gallery").hide();
