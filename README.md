@@ -1,8 +1,12 @@
 # rpg-game
 
-#Instructions
+## Deployed Project
 
-Double-click a character to make them "Your Character" and move them to the player area, giving them a background too. (Two clicks are required for this first selection.) A single click will select a character as your opponent and move them to the opponent area with another background.
+https://sgliput.github.io/rpg-game/
+
+## Instructions
+
+Double-click a character to make them "Your Character", detach them from the top, and move them to the player area, giving them a background too. (Two clicks are required for this first selection.) A single click will select a character as your opponent and move them to the opponent area with another background.
 
 The Attack button is then activated. Clicking Attack will inflict your attack damage on the opponent's HP and your opponent's counter-attack damage on your HP. Every time you attack, your attack points increase by their base amount. When an opponent's HP reaches 0, they are removed, and you can select another opponent. All characters have a way to win.
 
