@@ -126,8 +126,8 @@ $(document).ready(function () {
 
     $("#resetbtn").on("click", function () {
         $(".thumb").off("click");
-        var resetAttack = $("#player .attack").attr("value");
-        $("#player .attack").text(resetAttack);
+        var resetAttack = $(".attack").attr("value");
+        $(".attack").text(resetAttack);
 
         var resetIronHP = $("#ironman .HP").attr("value");
         $("#ironman .HP").text(resetIronHP);
